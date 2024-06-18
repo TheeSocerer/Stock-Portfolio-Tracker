@@ -1,4 +1,25 @@
 {% extends 'base.html' %}
 {% block content %}
-    <h1>Hello World</h1>
+    {% if ticker %}
+        {{  ticker }}
+    {% endif %}
+    {% if api %}
+        {% if api == "Error...." %}
+            there was a problem
+        {% else %}
+            <h1>{{ api.ticker}}</h1><br/>
+<!--            Price: ${{api.latestPrice}}<br/>-->
+<!--            previous close: {{ api. }}<br/>-->
+<!--            Market Cap: {{ api. }}<br/>-->
+<!--            YTH Change {{ api. }}<br/>-->
+<!--            52Wk High {{ api. }}<br/>-->
+
+<!--            {% for key,value in api.items %}-->
+<!--                {{key}}: {{value}}<br/>-->
+<!--            {% endfor %}-->
+        {% endif%}
+        do something
+    {% else%}
+        do something
+    {% endif %}
 {% endblock %}
