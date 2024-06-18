@@ -7,8 +7,30 @@
             <input class="form-control me-2" type="search" placeholder="add to portfolio" aria-label="Search" name = "ticker">
             <button class="btn btn-outline-secondary" type="submit">Add Stock</button>
           </form>
-    <br/>
+    <br/><br/>
+
+    <table class="table table-striped table-hover table-bordered">
+  <thead class="table-dark">
+    <tr>
+      <th scope="col">Company Name</th>
+      <th scope="col">Stock Price</th>
+      <th scope="col">Market Cap</th>
+      <th scope="col">High</th>
+      <th scope="col">Delete Stock</th>
+    </tr>
+  </thead>
+  <tbody>
+  {% if ticker %}
     {% for item in ticker %}
-{{ item }} - <a href="{% url 'delete' item.id %}"> Delete Stock</a><br/>
+        <tr>
+        <th scope="row">{{item}}</th>
+        <td>Mark</td>
+        <td>Otto</td>
+        <td>@mdo</td>
+        <td><a href="{% url 'delete' item.id %}"> Delete Stock</a></td>
+        </tr>
     {% endfor %}
+{% endif %}
+  </tbody>
+</table>
 {% endblock %}
