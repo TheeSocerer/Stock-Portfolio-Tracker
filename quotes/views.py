@@ -38,20 +38,24 @@ def add_stock(request):
     else:
         # aplhapoint= 32PUKSXOZL0C4RQD
         # polygon.io= Yc5MSGv3chvIQNmQLtO64sVPkrDF3Yb2
-        if request.method == 'POST':
-            ticker = request.POST['ticker']
-            # modify this for the search
-            for ticker_item in ticker:
-                #convert it to a string funtion
-                api_requests = requests.get("https://api.polygon.io/v2/aggs/ticker/AAPL/range/1/day/2024-01-09/2024-01-09"
-                                            "?apiKey=Yc5MSGv3chvIQNmQLtO64sVPkrDF3Yb2")
+
+        ticker = Stock.objects.all()#place holder for now
+        output = []
+        # modify this for the search
+        for ticker_item in ticker:
+            #convert it to a string funtion
+            api_requests = requests.get("https://api.polygon.io/v2/aggs/ticker/AAPL/range/1/day/2024-01-09/2024-01-09"
+                                        "?apiKey=Yc5MSGv3chvIQNmQLtO64sVPkrDF3Yb2")
+
             try:
                 api = json.loads(api_requests.content)
             except Exception as e:
                 api = "Error....."
 
+            output.append(api)
+
         ticker = Stock.objects.all()
-        return render(request, 'add_stock.html', {'ticker': ticker})
+        return render(request, 'add_stock.html', {'ticker': ticker,'output':output})
 
 
 def delete(request, stock_id):
