@@ -9,13 +9,12 @@ from .forms import StockForm
 
 def home(request):
     import requests
-    # aplhapoint= 32PUKSXOZL0C4RQD
-    # polygon.io= Yc5MSGv3chvIQNmQLtO64sVPkrDF3Yb2
+    
     if request.method == 'POST':
         ticker = request.POST['ticker']
         # modify this for the search
         api_requests = requests.get("https://api.polygon.io/v2/aggs/ticker/AAPL/range/1/day/2024-01-09/2024-01-09"
-                                    "?apiKey=Yc5MSGv3chvIQNmQLtO64sVPkrDF3Yb2")
+                                    "?apiKey=")
         try:
             api = json.loads(api_requests.content)
         except Exception as e:
@@ -45,7 +44,7 @@ def add_stock(request):
         for ticker_item in ticker:
             #convert it to a string funtion
             api_requests = requests.get("https://api.polygon.io/v2/aggs/ticker/AAPL/range/1/day/2024-01-09/2024-01-09"
-                                        "?apiKey=Yc5MSGv3chvIQNmQLtO64sVPkrDF3Yb2")
+                                        "?apiKey=")
 
             try:
                 api = json.loads(api_requests.content)
